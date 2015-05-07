@@ -1,6 +1,7 @@
 // JavaScript source code
 window.onload = function () {
 	
+
 req.open("GET",url);
 req.send();
 }
@@ -13,6 +14,14 @@ var url = "https://www.googleapis.com/calendar/v3/calendars/" + id +"/events?key
 req.addEventListener("load", requestLoaded, false);
 
 
+    var events = [];
 function requestLoaded(response) {
     var res = response;
+    
 }
+
+var myApp = angular.module("myApp", []);
+
+myApp.controller('CalendarItemsCtrl', function($scope){
+    $scope.CalendarItems = [{name: "test1"},{name: "test2"}];
+});
