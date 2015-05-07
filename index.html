@@ -10,12 +10,10 @@
 </head>
     <body ng-controller="CalendarItemsCtrl">
         <div >
-            <ul>
-                <li ng-repeat="item in CalendarItems">
-                    <h3>{{item.name}}</h3>
+                <div ng-repeat="item in CalendarItems">
+                    <h1>{{item.name}}</h1>
                     <h2>{{item.time}}</h2>
-                </li>
-            </ul>
+                </div>
         </div>
 </body>
 </html>
