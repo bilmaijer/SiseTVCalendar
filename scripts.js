@@ -1,34 +1,22 @@
 // JavaScript source code
-window.onload = function () {
-	
-
-req.open("GET",url);
-req.send();
-}
-
-var req = new XMLHttpRequest();
-var key = "AIzaSyDE_JvtqCn80h0oV0TlrXEYaeJbbHLo8Fo";
-var id = "vkfojt5isnllkunl2itskbl2d0@group.calendar.google.com";
-var url = "https://www.googleapis.com/calendar/v3/calendars/" + id +"/events?key=" + key;
-
-req.addEventListener("load", requestLoaded, false);
-
-
-    var events = [];
-function requestLoaded(response) {
-    var res = JSON.parse(response.currentTarget.response);
-    
-    //var event = [];
-    
-    //event.push(res.items);
-    var time = (res.items)[0].start.dateTime;
-    var name = (res.items)[0].summary;
-    console.log(time);
-    console.log(name);
-}
 
 var myApp = angular.module("myApp", []);
 
-myApp.controller('CalendarItemsCtrl', function($scope){
-    $scope.CalendarItems = [{name: "M 12",time: "time1"},{name: "T 13",time: "time2"}];
-});
+myApp.controller('CalendarItemsCtrl', function($scope, $http){
+        $scope.CalendarItems = [];
+        
+        var req = new XMLHttpRequest();
+        var key = "AIzaSyDE_JvtqCn80h0oV0TlrXEYaeJbbHLo8Fo";
+        var id = "vkfojt5isnllkunl2itskbl2d0@group.calendar.google.com";
+        var requrl = "https://www.googleapis.com/calendar/v3/calendars/" + id +"/events?key=" + key;
+
+        $http({method:"GET", url: requrl}).success(
+                function(data, status, headers, config) {
+                    data.items.forEach(function(item){
+                        var time = item.start.dateTime;
+                        var name = item.summary;
+                        $scope.CalendarItems.push({time: time, name: name});
+                    });
+                });
+    });  
+
