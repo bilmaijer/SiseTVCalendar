@@ -13,9 +13,11 @@ myApp.controller('CalendarItemsCtrl', function($scope, $http){
         $http({method:"GET", url: requrl}).success(
                 function(data, status, headers, config) {
                     data.items.forEach(function(item){
-                        var time = item.start.dateTime;
+                        var dateTime = new Date(item.start.dateTime);
+                        var time = dateTime.getHours() + ":" + dateTime.getMinutes();
+                        var date = dateTime.getDate() + " " + dateTime.getMonth();
                         var name = item.summary;
-                        $scope.CalendarItems.push({time: time, name: name});
+                        $scope.CalendarItems.push({time: time, name: name, date: date});
                     });
                 });
     });  
