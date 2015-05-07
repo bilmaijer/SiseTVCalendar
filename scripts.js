@@ -1,6 +1,6 @@
 // JavaScript source code
 
-var myApp = angular.module("myApp", []);
+var myApp = angular.module("myApp", ['angular.filter']);
 
 myApp.controller('CalendarItemsCtrl', function ($scope, $http) {
     $scope.CalendarItems = [];
@@ -9,6 +9,7 @@ myApp.controller('CalendarItemsCtrl', function ($scope, $http) {
     var key = "AIzaSyDE_JvtqCn80h0oV0TlrXEYaeJbbHLo8Fo";
     var id = "vkfojt5isnllkunl2itskbl2d0@group.calendar.google.com";
     var timeNow = new Date();
+    //min end time
     var timeMin = timeNow.toISOString();
     var requrl = "https://www.googleapis.com/calendar/v3/calendars/" + id + "/events?timeMin=" + timeMin + "&key=" + key;
 
@@ -19,7 +20,8 @@ myApp.controller('CalendarItemsCtrl', function ($scope, $http) {
                     var time = dateTime.getHours() + ":" + dateTime.getMinutes();
                     var date = weekday[dateTime.getDay()] + ", " + month[dateTime.getMonth()] + " " + dateTime.getDate();
                     var name = item.summary;
-                    $scope.CalendarItems.push({time: time, name: name, date: date});
+                    var event = time + " - " + name;
+                    $scope.CalendarItems.push({date: date, event: event});
                 });
             });
     var weekday = new Array(7);
