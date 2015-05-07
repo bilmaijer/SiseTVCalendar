@@ -30,5 +30,5 @@ function requestLoaded(response) {
 var myApp = angular.module("myApp", []);
 
 myApp.controller('CalendarItemsCtrl', function($scope){
-    $scope.CalendarItems = [{name: "test1"},{name: "test2"}];
+    $scope.CalendarItems = [{name: "M 12",time: "time1"},{name: "T 13",time: "time2"}];
 });
