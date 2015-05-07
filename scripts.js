@@ -6,7 +6,9 @@ req.send();
 }
 
 var req = new XMLHttpRequest();
-var url = "http://www.google.com/calendar/feeds/luikerki-calendar@gmail.com/public/full?alt=json-in-script&callback=insertAgenda&orderby=starttime&max-results=15&singleevents=true&sortorder=ascending&futureevents=true"
+var key = "AIzaSyDE_JvtqCn80h0oV0TlrXEYaeJbbHLo8Fo";
+var id = "vkfojt5isnllkunl2itskbl2d0@group.calendar.google.com";
+var url = "https://www.googleapis.com/calendar/v3/calendars/" + id +"/events?key=" + key;
 
 req.addEventListener("load", requestLoaded, false);
 
