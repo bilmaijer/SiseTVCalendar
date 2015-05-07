@@ -1,3 +1,9 @@
 ﻿body
 {
+    margin: 15px;
+}
+h1{
+    color: #558abb;
+    border-bottom: 1px solid #D0D0D0;
+    
 }

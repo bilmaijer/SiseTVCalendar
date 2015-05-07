@@ -8,14 +8,12 @@
     <script src="scripts.js" ></script>
     <title></title>
 </head>
-    <body ng-controller="CalendarItemsCtrl">
-        <div >
-            <ul>
-                <li ng-repeat="item in CalendarItems">
-                    <h3>{{item.date}}</h3>
-                    <h2>{{item.time}} - {{item.name}}</h2>
-                </li>
-            </ul>
+<body ng-controller="CalendarItemsCtrl">
+    <div >
+        <div ng-repeat="item in CalendarItems">
+            <h1>{{item.name}}</h1>
+            <h2>{{item.time}}</h2>
         </div>
+    </div>
 </body>
 </html>
