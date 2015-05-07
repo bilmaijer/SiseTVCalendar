@@ -16,8 +16,15 @@ req.addEventListener("load", requestLoaded, false);
 
     var events = [];
 function requestLoaded(response) {
-    var res = response;
+    var res = JSON.parse(response.currentTarget.response);
     
+    //var event = [];
+    
+    //event.push(res.items);
+    var time = (res.items)[0].start.dateTime;
+    var name = (res.items)[0].summary;
+    console.log(time);
+    console.log(name);
 }
 
 var myApp = angular.module("myApp", []);
