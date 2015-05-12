@@ -19,7 +19,8 @@ myApp.controller('CalendarItemsCtrl', function ($scope, $http) {
                     var dateTime = new Date(item.start.dateTime);
                     var time = convertDateToTime(dateTime);
                     
-                    var date = weekday[dateTime.getDay()] + ", " + month[dateTime.getMonth()] + " " + dateTime.getDate();
+                    // ng seems to sort groups A-Z, need to have date in front of day to have correct sorting.
+                    var date = month[dateTime.getMonth()] + " " + dateTime.getDate() + ", " + weekday[dateTime.getDay()];
                     var name = item.summary;
                     var event = time + " - " + name;
                     $scope.CalendarItems.push({date: date, event: event});
