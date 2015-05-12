@@ -17,7 +17,8 @@ myApp.controller('CalendarItemsCtrl', function ($scope, $http) {
             function (data, status, headers, config) {
                 data.items.forEach(function (item) {
                     var dateTime = new Date(item.start.dateTime);
-                    var time = dateTime.getHours() + ":" + dateTime.getMinutes();
+                    var time = convertDateToTime(dateTime);
+                    
                     var date = weekday[dateTime.getDay()] + ", " + month[dateTime.getMonth()] + " " + dateTime.getDate();
                     var name = item.summary;
                     var event = time + " - " + name;
@@ -46,5 +47,17 @@ myApp.controller('CalendarItemsCtrl', function ($scope, $http) {
     month[10] = "Nov";
     month[11] = "Dec";
 
+    function convertDateToTime(date){
+        var minutes = date.getMinutes();
+        var hours = date.getHours();
+        if(minutes < 10) {
+            minutes = "0" + minutes;  
+        };
+        if(hours < 10) {
+            hours = "0" + hours;
+        }
+        
+        return hours + ":" + minutes;
+    };
 });
 
