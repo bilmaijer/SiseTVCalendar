@@ -11,12 +11,12 @@
 </head>
 <body ng-controller="CalendarItemsCtrl">
     <div >
-        <div ng-repeat="(key, value) in CalendarItems | groupBy: 'date'">
-            <h1>{{key}}</h1>
-            <div ng-repeat="item in value">
-               <h2>{{item.event}}</h2>
+        <div ng-repeat="items in CalendarItems | groupBy: 'date' | toArray:true">
+            <h1>{{items.$key}}</h1>
+            <div ng-repeat="item in items">
+                <h2>{{item.event}}</h2>
             </div>
-            
+
         </div>
     </div>
 </body>
