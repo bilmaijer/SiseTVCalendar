@@ -15,13 +15,20 @@ myApp.controller('CalendarItemsCtrl', function ($scope, $http) {
     var requrl = "https://www.googleapis.com/calendar/v3/calendars/" + id + "/events?timeMin=" + timeMin + "&orderBy=startTime&singleEvents=true" + "&key=" + key;
     var counter = 1;
 
+    var previousStartDate;
+
     $http({method: "GET", url: requrl}).success(
             function (data, status, headers, config) {
                 data.items.forEach(function (item) {
                     var dateTime = new Date(item.start.dateTime);
                     var time = convertDateToTime(dateTime);
-                    
                     var date = weekday[dateTime.getDay()] + ", " + month[dateTime.getMonth()] + " " + dateTime.getDate();
+                    
+                    if(previousStartDate === date) {
+                        counter--;
+                    }
+                    previousStartDate = date;
+                    
                     var name = item.summary;
                     var event = time + " - " + name;
                     if(counter % 2 !== 0) {
