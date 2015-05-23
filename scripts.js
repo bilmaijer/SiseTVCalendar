@@ -12,7 +12,7 @@ myApp.controller('CalendarItemsCtrl', function ($scope, $http) {
     var timeNow = new Date();
     //min end time
     var timeMin = timeNow.toISOString();
-    var requrl = "https://www.googleapis.com/calendar/v3/calendars/" + id + "/events?timeMin=" + timeMin + "&key=" + key;
+    var requrl = "https://www.googleapis.com/calendar/v3/calendars/" + id + "/events?timeMin=" + timeMin + "&orderBy=startTime&singleEvents=true" + "&key=" + key;
     var counter = 1;
 
     $http({method: "GET", url: requrl}).success(
@@ -21,7 +21,6 @@ myApp.controller('CalendarItemsCtrl', function ($scope, $http) {
                     var dateTime = new Date(item.start.dateTime);
                     var time = convertDateToTime(dateTime);
                     
-                    // ng seems to sort groups A-Z, need to have date in front of day to have correct sorting.
                     var date = weekday[dateTime.getDay()] + ", " + month[dateTime.getMonth()] + " " + dateTime.getDate();
                     var name = item.summary;
                     var event = time + " - " + name;

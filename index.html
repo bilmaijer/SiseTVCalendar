@@ -15,17 +15,17 @@
             <h1>Upcoming events</h1>
         </header>
         <div class="leftColumn Col">
-            <div class="event" ng-repeat="(key, value) in CalendarItemsLeft | groupBy: 'date'">
-                <h2 class="eventTitle">{{key}}</h2>
-                <div class="eventDetails" ng-repeat="item in value">
+            <div class="event" ng-repeat="items in CalendarItemsLeft | groupBy: 'date' | toArray:true">
+                <h2 class="eventTitle">{{items.$key}}</h2>
+                <div class="eventDetails" ng-repeat="item in items">
                    <span>{{item.event}}</span>
                 </div>            
             </div>
         </div>
         <div class="rightColumn Col">
-            <div class="event" ng-repeat="(key, value) in CalendarItemsRight | groupBy: 'date'">
-                <h2 class="eventTitle">{{key}}</h2>
-                <div class="eventDetails" ng-repeat="item in value">
+            <div class="event" ng-repeat="items in CalendarItemsRight | groupBy: 'date' | toArray:true">
+                <h2 class="eventTitle">{{items.$key}}</h2>
+                <div class="eventDetails" ng-repeat="item in items">
                    <span>{{item.event}}</span>
                 </div>            
             </div>
