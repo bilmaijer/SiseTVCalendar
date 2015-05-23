@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 
-<html ng-app="myApp" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html ng-app="myApp" lang="en" xmlns="http://www.w3.org/1999/xhtml" class="pageRoot">
 <head>
     <meta charset="utf-8" />
     <link href="styles.css" rel="stylesheet" />
@@ -9,14 +9,26 @@
     <script src="scripts.js" ></script>
     <title></title>
 </head>
-<body ng-controller="CalendarItemsCtrl">
-    <div >
-        <div ng-repeat="(key, value) in CalendarItems | groupBy: 'date'">
-            <h1>{{key}}</h1>
-            <div ng-repeat="item in value">
-               <h2>{{item.event}}</h2>
+<body ng-controller="CalendarItemsCtrl" class="layoutRoot">
+    <div class="contentRoot">
+        <header>
+            <h1>Upcoming events</h1>
+        </header>
+        <div class="leftColumn Col">
+            <div class="event" ng-repeat="(key, value) in CalendarItemsLeft | groupBy: 'date'">
+                <h2 class="eventTitle">{{key}}</h2>
+                <div class="eventDetails" ng-repeat="item in value">
+                   <span>{{item.event}}</span>
+                </div>            
             </div>
-            
+        </div>
+        <div class="rightColumn Col">
+            <div class="event" ng-repeat="(key, value) in CalendarItemsRight | groupBy: 'date'">
+                <h2 class="eventTitle">{{key}}</h2>
+                <div class="eventDetails" ng-repeat="item in value">
+                   <span>{{item.event}}</span>
+                </div>            
+            </div>
         </div>
     </div>
 </body>
